@@ -132,7 +132,12 @@ void handleDigitalOutput(int pin)
 void handlePwmOutput(int pin)
 {
   pinMode(pin, OUTPUT);
+
+#ifndef ESP32
   analogWrite(pin, states[pin]);
+#else
+  digitalWrite(pin, 0);
+#endif
 }
 
 void handleDigitalInput(int pin)
